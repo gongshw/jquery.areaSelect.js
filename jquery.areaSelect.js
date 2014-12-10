@@ -89,12 +89,14 @@
 		this.dragging = false;
 		switch (this.status) {
 			case AreaSelectStatus.RESIZE:
-				if (this.currentArea.width == 0 && this.currentArea.height == 0) {
-					this.deleteArea(this.currentArea);
-					this.currentArea = undefined;
-				} else {
-					setAreaDirection(this.currentArea, Direction.SE);
-					this.triggerChange();
+				if (this.currentArea != undefined) {
+					if (this.currentArea.width == 0 && this.currentArea.height == 0) {
+						this.deleteArea(this.currentArea);
+						this.currentArea = undefined;
+					} else {
+						setAreaDirection(this.currentArea, Direction.SE);
+						this.triggerChange();
+					}
 				}
 				break;
 			case AreaSelectStatus.MOVE:
