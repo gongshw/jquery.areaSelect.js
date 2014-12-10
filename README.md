@@ -9,9 +9,9 @@ Init
 ====
 ```javascript
 var options = {
-	initAreas: [{"x": 280, "y": 93, "width": 50, "height": 50}], //the initial selected area when the plugin load
+	initAreas: [{"x": 280, "y": 93, "width": 50, "height": 50}], //the initial areas when the plugin load
 	deleteMethod: 'click', //or 'doubleClick'
-	area: {strokeStyle: 'red', lineWidth: 2}, //style to draw selected area
+	area: {strokeStyle: 'red', lineWidth: 2}, //style to draw selected areas
 	point: {size: 3, fillStyle: 'black'}, //style to draw point
 };
 $img.areaSelect(options);
@@ -21,6 +21,7 @@ Get Selected Areaa
 =================
 ```javascript
 var selectAreas = showPreview($img.areaSelect('get'));
+//[{"x":280,"y":93,"width":50,"height":50}]
 ```
 
 Event
