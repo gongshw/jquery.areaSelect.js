@@ -1,7 +1,7 @@
 jquery.areaSelect.js
 ====================
 
-areaSelect is a jQuery plugin that gives you the ability to Select multiple area from an image.
+AreaSelect is a jQuery plugin that gives you the ability to Select multiple area from an image.
 
 view demo: http://blog.gongshw.com/jquery.areaSelect.js/demo/demo.html
 
@@ -28,7 +28,7 @@ Event
 =====
 ```javascript
 $img.areaSelect('bindChangeEvent', function (event, data) {
-	//invoke when select areas changed
+	//invoke when selected areas changed
 	alert(data.areas);
 });
 ```
