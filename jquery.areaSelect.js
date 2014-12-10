@@ -71,7 +71,7 @@
 		this.dragging = true;
 		switch (this.status) {
 			case AreaSelectStatus.RESIZE:
-				setAreaDirection(this.currentArea, this.resizeDirection);
+				!this.currentArea || setAreaDirection(this.currentArea, this.resizeDirection);
 				break;
 			case AreaSelectStatus.MOVE:
 				this.dragAreaOffset = {x: this.currentArea.x - x, y: this.currentArea.y - y};
@@ -93,6 +93,7 @@
 					if (this.currentArea.width == 0 && this.currentArea.height == 0) {
 						this.deleteArea(this.currentArea);
 						this.currentArea = undefined;
+						this.status = AreaSelectStatus.CREATE;
 					} else {
 						setAreaDirection(this.currentArea, Direction.SE);
 						this.triggerChange();
@@ -208,6 +209,7 @@
 			areas.splice(areas.indexOf(area), 1);
 			this.currentArea = undefined;
 			this.triggerChange();
+			this.status = AreaSelectStatus.CREATE;
 		}
 	};
 
@@ -252,17 +254,19 @@
 
 
 	var setAreaDirection = function (area, direction) {
-		var x1 = area.x;
-		var x2 = area.x + area.width;
-		var y1 = area.y;
-		var y2 = area.y + area.height;
-		var width = Math.abs(area.width);
-		var height = Math.abs(area.height);
-		var minOrMax = {'1': Math.min, '-1': Math.max};
-		area.x = minOrMax[direction.x](x1, x2);
-		area.y = minOrMax[direction.y](y1, y2);
-		area.width = direction.x * width;
-		area.height = direction.y * height;
+		if (area != undefined && direction != undefined) {
+			var x1 = area.x;
+			var x2 = area.x + area.width;
+			var y1 = area.y;
+			var y2 = area.y + area.height;
+			var width = Math.abs(area.width);
+			var height = Math.abs(area.height);
+			var minOrMax = {'1': Math.min, '-1': Math.max};
+			area.x = minOrMax[direction.x](x1, x2);
+			area.y = minOrMax[direction.y](y1, y2);
+			area.width = direction.x * width;
+			area.height = direction.y * height;
+		}
 	};
 
 	var near = function (point1, point2, s) {
