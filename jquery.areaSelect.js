@@ -283,12 +283,12 @@
 			area: {strokeStyle: 'red', lineWidth: 2},
 			point: {size: 3, fillStyle: 'black'}
 		};
-		if (method === undefined || $.isPlainObject(method)) {
+		as = this.data('AreaSelect');
+		if (as == undefined && (method === undefined || $.isPlainObject(method))) {
 			var options = $.extend({}, defaultOptions, method);
 			as = new AreaSelect(this, options);
 			this.data('AreaSelect', as);
 		} else {
-			as = this.data('AreaSelect');
 			if (as === undefined) {
 				console.error('pls invoke areaSelect() on this element first!');
 			} else if (as[method] != undefined) {
