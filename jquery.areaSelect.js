@@ -3,6 +3,8 @@
  */
 (function ($, undefined) {
 
+	console.log('jquery.areaSelect.js by Gongshw https://github.com/gongshw/jquery.areaSelect.js');
+
 	var AreaSelectStatus = {CREATE: 'create', MOVE: 'move', RESIZE: 'resize', NEAR: 'near'};
 	var Direction = {
 		NE: {name: 'NE', x: 1, y: -1, cursor: 'nesw-resize'},
@@ -47,23 +49,23 @@
 		var as = this;
 		var moveDownPoint = {};
 		$canvas.mousemove(function (event) {
-			var offsetX = event.offsetX;
-			var offsetY = event.offsetY;
+			var offsetX = get_offset_X(event);
+			var offsetY = get_offset_Y(event);
 			if (as.dragging) {
 				as.onDragging(offsetX, offsetY);
 			} else {
 				as.onMouseMoving(offsetX, offsetY);
 			}
 		}).mousedown(function (event) {
-			moveDownPoint = {x: event.offsetX, y: event.offsetY};
-			as.onDragStart(event.offsetX, event.offsetY);
+			moveDownPoint = {x: get_offset_X(event), y: get_offset_Y(event)};
+			as.onDragStart(get_offset_X(event), get_offset_Y(event));
 		}).mouseup(function (event) {
-			if (event.offsetX == moveDownPoint.x && event.offsetY == moveDownPoint.y) {
-				as.onClick(event.offsetX, event.offsetY);
+			if (get_offset_X(event) == moveDownPoint.x && get_offset_Y(event) == moveDownPoint.y) {
+				as.onClick(get_offset_X(event), get_offset_Y(event));
 			}
 			as.onDragStop();
 		}).dblclick(function (event) {
-			as.onDoubleClick(event.offsetX, event.offsetY);
+			as.onDoubleClick(get_offset_X(event), get_offset_Y(event));
 		});
 	};
 
@@ -271,6 +273,14 @@
 
 	var near = function (point1, point2, s) {
 		return Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2) <= Math.pow(s, 2);
+	};
+
+	var get_offset_X = function (event) {
+		return event.offsetX ? event.offsetX : event.originalEvent.layerX;
+	};
+
+	var get_offset_Y = function (event) {
+		return event.offsetY ? event.offsetY : event.originalEvent.layerY;
 	};
 
 
