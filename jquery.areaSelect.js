@@ -1,5 +1,7 @@
 /**
  * Created by gongshw on 14/12/9.
+ *
+ * Updated by gongshw on 16/7/30.
  */
 (function ($, undefined) {
 
@@ -137,7 +139,7 @@
 			}
 		} else {
 			this.currentArea = undefined;
-			$canvas.css({cursor: 'auto'});
+			$canvas.css({cursor: 'default'});
 			this.status = AreaSelectStatus.CREATE;
 		}
 		this.draw();
@@ -310,3 +312,4 @@
 	}
 
 })(jQuery);
+
