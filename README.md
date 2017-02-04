@@ -32,3 +32,9 @@ $img.areaSelect('bindChangeEvent', function (event, data) {
 	alert(data.areas);
 });
 ```
+
+Uninstall
+=========
+```javascript
+$img.areaSelect('uninstall');
+```

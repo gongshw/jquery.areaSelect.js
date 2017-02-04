@@ -36,6 +36,11 @@
 		this.$canvas.on("areasChange", handle[0]);
 	};
 
+	AreaSelect.prototype.uninstall = function () {
+		this.$canvas.remove();
+		this.$ele.data('AreaSelect', null);
+	};
+
 	AreaSelect.prototype.init = function () {
 		var $canvas = $('<canvas/>');
 		$canvas.attr('width', this.$ele.width())
@@ -301,7 +306,7 @@
 			as = new AreaSelect(this, options);
 			this.data('AreaSelect', as);
 		} else {
-			if (as === undefined) {
+			if (as == undefined) {
 				console.error('pls invoke areaSelect() on this element first!');
 			} else if (as[method] != undefined) {
 				return as[method](Array.prototype.slice.call(arguments, 1));
